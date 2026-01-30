@@ -1,15 +1,22 @@
 let playerScore = 0
 let botScore = 0
 
+// SELECTORS
 const rock = document.getElementById("rock")
 const paper = document.getElementById("paper")
 const scissors = document.getElementById("scissors")
+const player = document.getElementById("player")
+const bot = document.getElementById("bot")
+const log = document.getElementById("log")
+const log2 = document.getElementById("log2")
 
-
+// EVENT LISTENERS
 rock.addEventListener("click", () => startGame(0));
 paper.addEventListener("click", () => startGame(1));
 scissors.addEventListener("click", () => startGame(2));
 
+
+//GAME FUNCTIONS
 function startGame(playerNumber) {
     if (typeof playerNumber != "number") {
         console.log("The input is not a number, please try again using numbers from 0 to 2")
@@ -26,61 +33,61 @@ function startGame(playerNumber) {
 function getResult(playerNumber) {
     let botChoice = getBotChoice()
     let playerChoice = getPlayerChoice(playerNumber)
-    console.log("Your choice was", playerChoice, "and the computer's choice was", botChoice, "\n")
+    log.textContent = `Your choice was ${playerChoice}, and the computer's choice was ${botChoice}\n`
     if (playerChoice == "rock") {
         if (botChoice == "rock") {
-            result = `It was a draw! try again. \n The score is now: ${playerScore} for the player, and ${botScore} for the bot`
-            console.log(result)
+            result = `It was a draw! try again.`
+            log2.textContent = result
             verifyWin()
         }
         else if (botChoice == "paper") {
             botScore += 1
-            result = `The bot won that one! please try again \n The score is now: ${playerScore} for the player, and ${botScore} for the bot`
-            console.log(result)
+            result = `The bot won that one! please try again`
+            log2.textContent = result
             verifyWin()
         }
         else if(botChoice == "scissors") {
             playerScore += 1
-            result = `You win! the computer's got nothing on you \n The score is now: ${playerScore} for the player, and ${botScore} for the bot`
-            console.log(result)
+            result = `You win! the computer's got nothing on you`
+            log2.textContent = result
             verifyWin()
         }
     }
     else if (playerChoice == "paper") {
         if (botChoice == "paper") {
-            result = `It was a draw! try again. \n The score is now: ${playerScore} for the player, and ${botScore} for the bot`
-            console.log(result)
+            result = `It was a draw! try again.`
+            log2.textContent = result
             verifyWin()
         }
         else if (botChoice == "scissors") {
             botScore += 1
-            result = `The bot won that one! please try again \n The score is now: ${playerScore} for the player, and ${botScore} for the bot`
-            console.log(result)
+            result = `The bot won that one! please try again`
+            log2.textContent = result
             verifyWin()
         }
         else {
             playerScore += 1
-            result = `You win! the computer's got nothing on you \n The score is now: ${playerScore} for the player, and ${botScore} for the bot`
-            console.log(result)
+            result = `You win! the computer's got nothing on you`
+            log2.textContent = result
             verifyWin()
         }
     }
     else if (playerChoice == "scissors") {
         if (botChoice == "scissors") {
-            result = `It was a draw! try again. \n The score is now: ${playerScore} for the player, and ${botScore} for the bot`
-            console.log(result)
+            result = `It was a draw! try again.`
+            log2.textContent = result
             verifyWin()
         }
         else if (botChoice == "paper") {
             botScore += 1
-            result = `The bot won that one! please try again \n The score is now: ${playerScore} for the player, and ${botScore} for the bot`
-            console.log(result)
+            result = `The bot won that one! please try again`
+            log2.textContent = result
             verifyWin()
         }
         else {
             playerScore += 1
-            result = `You win! the computer's got nothing on you \n The score is now: ${playerScore} for the player, and ${botScore} for the bot`
-            console.log(result)
+            result = `You win! the computer's got nothing on you`
+            log2.textContent = result
             verifyWin()
         }
     }
@@ -128,6 +135,8 @@ function getPlayerChoice(playerNumber) {
 }
 
 function verifyWin() {
+    bot.textContent = `${botScore}`
+    player.textContent = `${playerScore}`
     if (playerScore >= 50) {
         result = `You won 5 times, condragulations, you are the winner of this game! \n The final score was: Player ${playerScore} x ${botScore} Bot`
         return result
