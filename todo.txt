@@ -1,6 +1,0 @@
-generate number 1 to 3 (0 to 2 seems easier)
-test gen
-use if statement to define which choice is each
-1 = rock, 2 = paper, 3 = scissor
-test atrib
-if statement which wins from each
