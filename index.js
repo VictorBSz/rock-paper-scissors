@@ -30,71 +30,33 @@ function startGame(playerNumber) {
     }
 }
 
+const choices = ["rock", "paper", "scissors"]
+
+const winners = {
+    rock: "scissors",
+    paper: "rock",
+    scissors: "paper"
+};
+
 function getResult(playerNumber) {
     let botChoice = getBotChoice()
-    let playerChoice = getPlayerChoice(playerNumber)
-    log.textContent = `Your choice was ${playerChoice}, and the computer's choice was ${botChoice}\n`
-    if (playerChoice == "rock") {
-        if (botChoice == "rock") {
-            result = `It was a draw! try again.`
-            log2.textContent = result
-            verifyWin()
-        }
-        else if (botChoice == "paper") {
-            botScore += 1
-            result = `The bot won that one! please try again`
-            log2.textContent = result
-            verifyWin()
-        }
-        else if(botChoice == "scissors") {
-            playerScore += 1
-            result = `You win! the computer's got nothing on you`
-            log2.textContent = result
-            verifyWin()
-        }
+    let playerChoice = choices[playerNumber]
+    log.textContent = `Your choice: ${playerChoice} | Bot choice: ${botChoice}`
+
+    if (playerChoice == botChoice) {
+        log2.textContent = `It's a draw!`
     }
-    else if (playerChoice == "paper") {
-        if (botChoice == "paper") {
-            result = `It was a draw! try again.`
-            log2.textContent = result
-            verifyWin()
-        }
-        else if (botChoice == "scissors") {
-            botScore += 1
-            result = `The bot won that one! please try again`
-            log2.textContent = result
-            verifyWin()
-        }
-        else {
-            playerScore += 1
-            result = `You win! the computer's got nothing on you`
-            log2.textContent = result
-            verifyWin()
-        }
+    else if (winners[playerChoice] == botChoice) {
+        log2.textContent = `You won!`
+        playerScore++
     }
-    else if (playerChoice == "scissors") {
-        if (botChoice == "scissors") {
-            result = `It was a draw! try again.`
-            log2.textContent = result
-            verifyWin()
-        }
-        else if (botChoice == "paper") {
-            botScore += 1
-            result = `The bot won that one! please try again`
-            log2.textContent = result
-            verifyWin()
-        }
-        else {
-            playerScore += 1
-            result = `You win! the computer's got nothing on you`
-            log2.textContent = result
-            verifyWin()
-        }
+    else if (winners[botChoice] == playerChoice) {
+        log2.textContent = `You lose!`
+        botScore++
     }
-    else {
-        result = "Something has gone wrong :("
-        return result
-    }
+
+    verifyWin()
+
 }
 
 function getNumber() {
@@ -103,35 +65,8 @@ function getNumber() {
 
 function getBotChoice() {
     number = getNumber()
-
-    if (number == 0) {
-        choice = "rock"
-    }
-    else if (number == 1) {
-        choice = "paper"
-    }
-    else {
-        choice = "scissors"
-    }
-
+    choice = choices[number]
     return choice
-}
-
-function getPlayerChoice(playerNumber) {
-    if (playerNumber == 0) {
-        playerChoice = "rock"
-    }
-    else if (playerNumber == 1) {
-        playerChoice = "paper"
-    }
-    else if (playerNumber == 2) {
-        playerChoice = "scissors"
-    }
-    else {
-        playerChoice = "error"
-    }
-
-    return playerChoice
 }
 
 function verifyWin() {
