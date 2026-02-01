@@ -55,7 +55,7 @@ function getResult(playerNumber) {
         botScore++
     }
 
-    verifyWin()
+    showScore()
 
 }
 
@@ -69,18 +69,9 @@ function getBotChoice() {
     return choice
 }
 
-function verifyWin() {
+function showScore() {
     bot.textContent = `${botScore}`
     player.textContent = `${playerScore}`
-    if (playerScore >= 50) {
-        result = `You won 5 times, condragulations, you are the winner of this game! \n The final score was: Player ${playerScore} x ${botScore} Bot`
-        return result
-    } else if (botScore >= 50) {
-        result = `Too bad, the bot won 5 times and took the win! Better luck next time \n The final score was: Player ${playerScore} x ${botScore} Bot`
-        console.log(result)
-    } else {
-        startGame()
-    }
 }
 
 
